@@ -19,3 +19,6 @@ nav.navbar.navbar-default
             ul.dropdown-menu(role='menu')
               li
                 a(href='/about') About
+              if user
+                li
+                  a(href='/logout') Logout
