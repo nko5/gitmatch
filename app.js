@@ -32,6 +32,7 @@ function ensureAuthenticated(req, res, next) {
 // view engine setup
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static('public'));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.use(logger('dev'));

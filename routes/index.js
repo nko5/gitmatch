@@ -8,7 +8,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  if (req.user) {
+    res.redirect('/home');
+  } else {
+    res.render('index');
+  }
 });
 
 /* GET starts OAuth authorisation with Github */

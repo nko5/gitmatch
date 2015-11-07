@@ -49,7 +49,7 @@ test('Repo CONTRIBUTING.md does not exist', function (t) {
 
   repository.checkContributingmd(badRepo).then(function(response) {
   }, function(error) {
-    t.equal(error, 'not found');
+    t.equal(error, 'contributing.md not found');
   });
 });
 
@@ -57,7 +57,7 @@ test('Repo CONTRIBUTING.md exists', function (t) {
   t.plan(1);
 
   repository.checkContributingmd(goodRepo).then(function(response) {
-    t.equal(response, 'ok');
+    t.equal(response, 'contributing ok');
   }, function(error) {
     t.end(error);
   });
