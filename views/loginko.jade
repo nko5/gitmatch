@@ -1,0 +1,10 @@
+extends ./layout.jade
+
+block title
+  title error
+block content
+  div(class='container-fluid')
+    div(class='row')
+        div.col-md-12
+          h1.error Error signing up
+          a(class=['btn', 'alert', 'alert-danger', 'btn-lg'] href='/auth' role='button') Try again
