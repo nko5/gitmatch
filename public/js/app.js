@@ -1,3 +1,5 @@
 $(function() {
-      console.log( "ready!" );
+  $('.fixrepo').click(function() {
+    alert('foo');
+  });
 });
