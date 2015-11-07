@@ -77,6 +77,14 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+app.use(function(req, res, next) {
+  console.log(req);
+  if (req && req.user) {
+    console.log('GitHub accessToken: ' + req.user.accessToken);
+  }
+  next();
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler
