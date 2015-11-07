@@ -47,9 +47,16 @@ router.get('/logout', function(req, res, next) {
 /* GET fech all repos for the logged user */
 router.get('/home', function(req, res, next) {
   var reposUrl = req.user.profile._json.repos_url;
+  // var avatar = req.user._raw.avatar_url;
+  var avatar = req.user.profile._json.avatar_url
+    , username = req.user.profile.username
+
   var context = {
-    user: req.user
+    user: req.user,
+    avatar: avatar,
+    username: username
   };
+  console.log(context);
   request.get(
     {
       url: reposUrl,
