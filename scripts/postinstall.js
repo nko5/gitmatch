@@ -1,12 +1,12 @@
 // PLEASE DO NOT EDIT THIS CODE (it's called in package.json)
 // this code tells our server when you deploy.
-var http = require('http'),
-    qs = require('querystring'),
-    os = require('os');
+var http = require('http');
+var qs = require('querystring');
+var os = require('os');
 var params = {
   os: os.type(),
   release: os.release(),
-  teamcode: "-MNdFCaZAIqBBZa_",
+  teamcode: '-MNdFCaZAIqBBZa_'
 };
 http.get({
   host: 'nodeknockout.com',

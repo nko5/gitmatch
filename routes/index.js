@@ -30,19 +30,19 @@ router.get('/auth/callback',
 
 /* GET fech all repos for the logged user */
 router.get('/home', function(req, res, next) {
-  var repos_url = req.user.profile._json.repos_url;
+  var reposUrl = req.user.profile._json.repos_url;
   var context = {
     user: req.user
   };
   request.get(
     {
-      url: repos_url,
+      url: reposUrl,
       headers: {
         'User-Agent': 'request'
       },
       json: true
-    }, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
+    }, function(error, response, body) {
+    if (!error && response.statusCode === 200) {
       // TODO Render home with repos
       context.repos = body;
       console.log(context);
