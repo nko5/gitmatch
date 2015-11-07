@@ -3,6 +3,7 @@
 var express = require('express');
 var passport = require('passport');
 var request = require('request');
+var repository = require('../lib/repository');
 var router = express.Router();
 
 /* GET home page. */
@@ -16,7 +17,7 @@ router.get('/auth', passport.authenticate('github'));
 
 /* GET authorisation error page. */
 router.get('/auth/error', function(req, res) {
-  // TODO Create login KO template
+  // TODO Create lin KO template
   res.render('loginko');
 });
 
