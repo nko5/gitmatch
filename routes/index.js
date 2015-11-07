@@ -74,6 +74,7 @@ router.get('/check/:repo', function(req, res, next) {
       res.redirect('/match/'+reponame);
     }, function (errors) {
       context.errors = errors
+      console.log(errors);
       res.render('invalid', context);
     });
   });
