@@ -1,16 +1,7 @@
 doctype
 html.no-js
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    // - tittle tp modify
-    block title
-      title welcome
-    meta(name='description', content='')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    //-link(rel='stylesheet', href='styles/normalize.css')
-    link(rel='stylesheet', href='styles/main.css')
-    //-script(src='js/vendor/modernizr-2.7.1.min.js')
+  include ./includes/header.jade
+    
   body
     <!--[if lt IE 8]>
     p.browsehappy
@@ -24,8 +15,7 @@ html.no-js
         div(class='form-group')
         // - content tp modify
         block content
-          form(name='login')
-            a(class=['btn', 'btn-default'] href='auth' role='button') Sign in
+          default message
 
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
     script window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')
@@ -42,3 +32,5 @@ html.no-js
         e.src='//www.google-analytics.com/analytics.js';
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
         ga('create','UA-XXXXX-X');ga('send','pageview');
+        
+    include ./includes/footer.jade

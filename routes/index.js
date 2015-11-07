@@ -18,7 +18,7 @@ router.get('/auth', passport.authenticate('github'));
 router.get('/auth/error', function(req, res) {
   // TODO Create login KO template
   res.send('Login Failed');
-  res.render('')
+  res.render('');
 });
 
 /* GET OAuth authorisation callback */
@@ -26,8 +26,7 @@ router.get('/auth/callback',
   passport.authenticate('github', {failureRedirect: '/auth/error'}),
   function(req, res) {
     // TODO Redirect to /home
-    console.log(res.params);
-    res.render('/home')
+    res.redirect('/home');
   }
 );
 

@@ -1,6 +1,9 @@
 extends ./layout.jade
 
 block title 
-  title welcome
+ title welcome
 block content
-  span() logged
+  ul
+    each item in list  
+    li= item
+ 
