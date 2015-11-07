@@ -1,21 +1,29 @@
 nav.navbar.navbar-default
   .container-fluid
     .navbar-header
-      button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand(href='/') gitmatch
-
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li
-          a(href='/') Home
-      ul.nav.navbar-nav.navbar-right
-        li.dropdown
-          a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') ...
-            span.caret
-            ul.dropdown-menu(role='menu')
+     if avatar
+        .container-fluid
+          .row.text-center
+              .col-md-12.text-center
+                a(class='navbar-brand' href='#')
+                  img(src=avatar)
+                  //user data
+                span=username  
+          .row.text-center    
+            button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+              a.navbar-brand(href='/') gitmatch
+              
+            ul.nav.navbar-nav
               li
-                a(href='/about') About
+                a(href='/') Home
+            ul.nav.navbar-nav.navbar-right
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') ...
+                  span.caret
+                  ul.dropdown-menu(role='menu')
+                    li
+                      a(href='/about') About
