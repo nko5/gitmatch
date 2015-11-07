@@ -16,9 +16,8 @@ router.get('/auth', passport.authenticate('github'));
 
 /* GET authorisation error page. */
 router.get('/auth/error', function(req, res) {
-  // TODO Create login KO template
-  res.send('Login Failed');
-  res.render('');
+  // TODO Create lin KO template
+  res.render('loginko');
 });
 
 /* GET OAuth authorisation callback */
