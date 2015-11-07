@@ -4,6 +4,12 @@
   "description": "Our soon to be awesome entry for NKO2015. Let's make something amazing.",
   "author": "Node Knockout Team <all@nodeknockout.com>",
   "main": "./app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "test": "tape tests/*.js",
+    "postinstall": "node scripts/postinstall.js"
+  },
   "dependencies": {
     "body-parser": "^1.14.1",
     "connect-redis": "^3.0.1",
@@ -16,8 +22,7 @@
     "passport": "^0.3.0",
     "serve-favicon": "^2.3.0"
   },
-  "scripts": {
-    "start": "node app.js",
-    "postinstall": "node scripts/postinstall.js"
+  "devDependencies": {
+    "tape": "^4.2.2"
   }
 }
