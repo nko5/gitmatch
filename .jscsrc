@@ -1,0 +1,20 @@
+{
+  "preset": "google",
+  "fileExtensions": [".js", "jscs"],
+
+  "requireParenthesesAroundIIFE": true,
+  "maximumLineLength": 120,
+  "validateLineBreaks": "LF",
+  "validateIndentation": 2,
+  "disallowTrailingComma": true,
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+
+  "disallowSpacesInsideObjectBrackets": null,
+  "disallowImplicitTypeConversion": ["string"],
+
+  "safeContextKeyword": "ctx",
+
+  "excludeFiles": [
+        "tests/data/**"
+    ]
+}
