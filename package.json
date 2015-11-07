@@ -8,7 +8,7 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "build-cli": "browserify lib/client/app.js > public/js/build.js",
-    "test": "tape tests/*.js",
+    "test": "tape tests/repository.js",
     "postinstall": "node scripts/postinstall.js"
   },
   "dependencies": {
@@ -18,6 +18,7 @@
     "debug": "^2.2.0",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
+    "github": "^0.2.4",
     "jade": "^1.11.0",
     "morgan": "^1.6.1",
     "passport": "^0.3.0",
@@ -27,6 +28,7 @@
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
+    "blue-tape": "^0.1.10",
     "bootstrap": "^3.3.5",
     "browserify": "^12.0.1",
     "debug": "^2.2.0",
