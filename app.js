@@ -9,6 +9,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var passport = require('passport');
+var GithubStrategy = require('passport-github').Strategy;
 var bodyParser = require('body-parser');
 var redis = require('redis');
 var RedisStore = require('connect-redis')(session);
@@ -54,6 +55,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+
+passport.use(new GithubStrategy({
+  clientID: 'a9f50e631bc7bd2f8f7c',
+  clientSecret: 'd0315b0f9dd644318c852cdf1d384f35ecb3766b',
+  callbackURL: 'http://localhost:3000/auth/callback'
+}, function(accessToken, refreshToken, profile, done){
+  done(null, {
+    accessToken: accessToken,
+    profile: profile
+  });
+}));
 
 passport.serializeUser(function(user, done) {
   done(null, {
