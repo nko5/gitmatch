@@ -3,8 +3,8 @@ extends ./layout.jade
 block title
   title error
 block content
-  div(class='container-fluid')
+  div(class='container')
     div(class='row')
-        div.col-md-12
-          h1.error Error signing up
-          a(class=['btn', 'alert', 'alert-danger', 'btn-lg'] href='/auth' role='button') Try again
+      div.col-md-12.text-center
+        h1.alert.alert-danger Error signing up
+        a(class=['btn', 'btn-default', 'btn-lg'] href='/auth' role='button') Try again
