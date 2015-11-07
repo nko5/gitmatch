@@ -55,10 +55,9 @@ router.get('/home', function(req, res, next) {
       json: true
     }, function(error, response, body) {
     if (!error && response.statusCode === 200) {
-      // TODO Render home with repos
       context.repos = body;
       console.log(context);
-      res.send(body);
+      res.render("home", context);
     }
   });
 });
