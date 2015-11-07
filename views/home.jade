@@ -1,0 +1,17 @@
+<<<<<<< HEAD
+extends ./layout.jade
+
+block title 
+ title welcome
+block content
+  form
+    div(class='container')
+      div(class='row')
+        div.col-md-12
+          h1 Choose a repository
+          ul
+            each repo in repos
+              li
+                .row
+                  .col-md-12
+                    a(href="/check/"+repo.id)= repo.name
