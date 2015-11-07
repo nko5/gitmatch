@@ -8,7 +8,7 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "build-cli": "browserify lib/client/app.js > public/js/build.js",
-    "test": "tape tests/repository.js",
+    "test": "tape tests/*.js",
     "postinstall": "node scripts/postinstall.js"
   },
   "dependencies": {
