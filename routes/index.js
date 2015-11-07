@@ -63,4 +63,21 @@ router.get('/home', function(req, res, next) {
   });
 });
 
+router.get('/check/:id', function (error, response, body) {
+  request.get(
+    {
+      url: reposUrl,
+      headers: {
+        'User-Agent': 'request'
+      },
+      json: true
+    }, function(error, response, body) {
+    if (!error && response.statusCode === 200) {
+      context.repos = body;
+      console.log(context);
+      res.render("home", context);
+    }
+  });
+})
+
 module.exports = router;
