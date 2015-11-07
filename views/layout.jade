@@ -12,11 +12,9 @@ html.no-js
 
     include ./includes/nav.jade
 
-    div(class='container-fluid')
-      div(class='row')
-        div(class='form-group')
-        // - content tp modify
-        block content
+    block content
+
+    include ./includes/footer.jade
 
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
     script(src='js/vendor/bootstrap.min.js')
@@ -32,4 +30,3 @@ html.no-js
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
         ga('create','UA-XXXXX-X');ga('send','pageview');
 
-    include ./includes/footer.jade

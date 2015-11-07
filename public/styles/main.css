@@ -26,3 +26,8 @@ h2 img {
   right: 0;
   margin: auto;
 }
+
+footer {
+  margin-top: 30px;
+  font-size: 0.9em;
+}
