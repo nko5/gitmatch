@@ -78,7 +78,6 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.use(function(req, res, next) {
-  console.log(req);
   if (req && req.user) {
     console.log('GitHub accessToken: ' + req.user.accessToken);
   }
