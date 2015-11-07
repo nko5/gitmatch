@@ -2,6 +2,7 @@
 
 var express = require('express');
 var passport = require('passport');
+var request = require('request');
 var router = express.Router();
 
 /* GET home page. */
@@ -27,10 +28,32 @@ router.get('/auth/callback',
   }
 );
 
-
 /* GET about page. */
 router.get('/about', function(req, res, next) {
   res.render('about')
+});
+
+/* GET fech all repos for the logged user */
+router.get('/home', function(req, res, next) {
+  var repos_url = req.user.profile._json.repos_url;
+  var context = {
+    user: req.user
+  };
+  request.get(
+    {
+      url: repos_url,
+      headers: {
+        'User-Agent': 'request'
+      },
+      json: true
+    }, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      // TODO Render home with repos
+      context.repos = body;
+      console.log(context);
+      res.send(body);
+    }
+  });
 });
 
 module.exports = router;
