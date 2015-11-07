@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js",
+    "build-cli": "browserify lib/client/app.js > public/js/build.js",
     "test": "tape tests/*.js",
     "postinstall": "node scripts/postinstall.js"
   },
@@ -26,6 +27,10 @@
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
+    "bootstrap": "^3.3.5",
+    "browserify": "^12.0.1",
+    "debug": "^2.2.0",
+    "modernizr": "^3.2.0",
     "tape": "^4.2.2"
   }
 }
