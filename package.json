@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js",
+    "build-cli": "browserify lib/client/app.js > public/js/build.js",
     "test": "tape tests/*.js",
     "postinstall": "node scripts/postinstall.js"
   },
@@ -20,10 +21,12 @@
     "jade": "^1.11.0",
     "morgan": "^1.6.1",
     "passport": "^0.3.0",
+    "passport-github": "^1.0.0",
     "redis": "^2.3.0",
     "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
+    "browserify": "^12.0.1",
     "tape": "^4.2.2"
   }
 }
