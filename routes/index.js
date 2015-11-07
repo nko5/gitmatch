@@ -3,6 +3,7 @@
 var express = require('express');
 var passport = require('passport');
 var request = require('request');
+var repository = require('../lib/repository');
 var router = express.Router();
 
 /* GET home page. */
@@ -66,22 +67,12 @@ router.get('/home', function(req, res, next) {
 router.get('/check/:repo', function(req, res, next) {
   var username = req.user.profile.username;
   var reponame = req.params.repo;
-  var repoUrl = 'https://api.github.com/repos/'+username+'/'+reponame;
-  var context = {
-    user: req.user
-  };
-  request.get(
-    {
-      url: repoUrl,
-      headers: {
-        'User-Agent': 'request'
-      },
-      json: true
-    }, function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      context.repo = body;
-      res.send(context);
-    }
+  repository.getRepo(username, reponame).then(function (repo) {
+    repository.checkRepo(repo).then(function (result) {
+      console.log(repo, result);
+    }, function (error) {
+      console.log(error);
+    });
   });
 });
 
