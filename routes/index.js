@@ -27,7 +27,6 @@ router.get('/auth/callback',
   function(req, res) {
     // TODO Redirect to /home
     console.log(res.params);
-    res.send('Login success');
     res.render('/home')
   }
 );
