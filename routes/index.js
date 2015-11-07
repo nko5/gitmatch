@@ -69,11 +69,31 @@ router.get('/check/:repo', function(req, res, next) {
   var reponame = req.params.repo;
   repository.getRepo(username, reponame).then(function (repo) {
     repository.checkRepo(repo).then(function (result) {
-      console.log(repo, result);
+      res.redirect('/match/'+reponame);
     }, function (error) {
-      console.log(error);
+      res.redirect('/invalid/'+reponame);
     });
   });
+});
+
+/* GET repo is invalid we ask permisssion to create a PR with fixes */
+router.get('/invalid/:repo', function(req, res, next) {
+  var username = req.user.profile.username;
+  var reponame = req.params.repo;
+  var context = {
+    user: req.user
+  };
+  res.render("invalid", context);
+});
+
+/* GET repo is valid so match process starts */
+router.get('/match/:repo', function(req, res, next) {
+  var username = req.user.profile.username;
+  var reponame = req.params.repo;
+  var context = {
+    user: req.user
+  };
+  res.render("match", context);
 });
 
 module.exports = router;
