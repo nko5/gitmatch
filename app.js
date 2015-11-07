@@ -68,15 +68,11 @@ passport.use(new GithubStrategy({
 }));
 
 passport.serializeUser(function(user, done) {
-  done(null, {
-    user: 'afinto'
-  });
+  done(null, user);
 });
 
-passport.deserializeUser(function(id, done) {
-  done(null, {
-    user: 'afinto'
-  });
+passport.deserializeUser(function(user, done) {
+  done(null, user);
 });
 
 app.use('/', routes);
