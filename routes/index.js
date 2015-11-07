@@ -7,6 +7,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log(req.user);
   res.render('index');
 });
 
@@ -27,6 +28,12 @@ router.get('/auth/callback',
     res.send('Login success');
   }
 );
+
+/* GET Logout */
+router.get('/logout', function(req, res, next) {
+  req.logout();
+  res.redirect('/');
+});
 
 /* GET fech all repos for the logged user */
 router.get('/home', function(req, res, next) {
