@@ -1,0 +1,15 @@
+extends ./layout.jade
+
+block title
+  title gitmatch - about
+block content
+  .container-fluid
+    .row
+      .col-md-12.text-center
+        h1 Your repo is invalid!
+        h3 But we are going to fix it  with a pull request automatically :D
+        img(src="http://cdn.meme.am/instances/500x/62661686.jpg")
+    hr
+    .row
+      .col-md-12.text-center
+          a.btn.btn-primary.btn-lg(href="/fixrepo/", role="button") Fix my repo!
