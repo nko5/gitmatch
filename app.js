@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var config = require('./lib/config');
 var debug = require('debug')('gitmatch');
 var path = require('path');
 var http = require('http');
@@ -14,7 +15,7 @@ var bodyParser = require('body-parser');
 var redis = require('redis');
 var RedisStore = require('connect-redis')(session);
 var client = redis.createClient(
-  'redis://x:1f9846ff17b44925bd0f177c401e54a2@crafty-willow-8972.redisgreen.net:11042/',
+  config.redis.url,
   {}
 );
 
@@ -45,7 +46,7 @@ if (app.get('env') === 'development') {}
 
 app.use(session({
   store: new RedisStore({
-    url: 'redis://x:1f9846ff17b44925bd0f177c401e54a2@crafty-willow-8972.redisgreen.net:11042/'
+    url: config.redis.url
   }),
   secret: 'Kn0ck0ut',
   resave: false,
