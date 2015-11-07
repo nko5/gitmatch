@@ -1,15 +1,15 @@
 extends ./layout.jade
 
 block title
-  title gitmatch - about
+  title gitmatch - insufficient information
 block content
   .container-fluid
     .row
       .col-md-12.text-center
-        h1 Your repo is invalid!
-        h3 But we are going to fix it  with a pull request automatically :D
+        h1 Your repo is not contribution-friendly!
+        h3 But we can to fix it with a pull request :)
         img(src="http://cdn.meme.am/instances/500x/62661686.jpg")
     hr
     .row
       .col-md-12.text-center
-          a.btn.btn-primary.btn-lg(href="/fixrepo/", role="button") Fix my repo!
+          button.btn.btn-primary.btn-lg.fixrepo(type="button") Fix my repo!
