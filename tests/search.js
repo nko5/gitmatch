@@ -13,7 +13,7 @@ test('Searching users on GitHub', function (t) {
   });
 });
 
-test.only('Searching repos on GitHub', function (t) {
+test('Searching repos on GitHub', function (t) {
   t.plan(2);
   search.repos('octocat')
   .then((repos) => {
