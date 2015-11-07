@@ -57,8 +57,30 @@ router.get('/home', function(req, res, next) {
     }, function(error, response, body) {
     if (!error && response.statusCode === 200) {
       context.repos = body;
-      console.log(context);
       res.render("home", context);
+    }
+  });
+});
+
+/* GET checks the information for a repo */
+router.get('/check/:repo', function(req, res, next) {
+  var username = req.user.profile.username;
+  var reponame = req.params.repo;
+  var repoUrl = 'https://api.github.com/repos/'+username+'/'+reponame;
+  var context = {
+    user: req.user
+  };
+  request.get(
+    {
+      url: repoUrl,
+      headers: {
+        'User-Agent': 'request'
+      },
+      json: true
+    }, function(error, response, body) {
+    if (!error && response.statusCode === 200) {
+      context.repo = body;
+      res.send(context);
     }
   });
 });
