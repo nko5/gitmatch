@@ -8,9 +8,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
 var passport = require('passport');
 var bodyParser = require('body-parser');
+var redis = require('redis');
+var RedisStore = require('connect-redis')(session);
+var client = redis.createClient(
+  'redis://x:1f9846ff17b44925bd0f177c401e54a2@crafty-willow-8972.redisgreen.net:11042/',
+  {}
+);
 
 var routes = require('./routes/index');
 
@@ -38,9 +43,12 @@ app.use(cookieParser());
 if (app.get('env') === 'development') {}
 
 app.use(session({
-  store: new RedisStore(),
+  store: new RedisStore({
+    url: 'redis://x:1f9846ff17b44925bd0f177c401e54a2@crafty-willow-8972.redisgreen.net:11042/'
+  }),
   secret: 'Kn0ck0ut',
   resave: false,
+  cookie: { maxAge: 2628000000 },
   saveUninitialized: true
 }));
 app.use(passport.initialize());
