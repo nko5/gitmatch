@@ -1,40 +1,14 @@
-doctype
-html.no-js
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    title gitmatch - About
-    meta(name='description', content='')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    //-link(rel='stylesheet', href='styles/normalize.css')
-    link(rel='stylesheet', href='styles/main.css')
-    //-script(src='js/vendor/modernizr-2.7.1.min.js')
-  body
-    <!--[if lt IE 8]>
-    p.browsehappy
-      | You are using an <strong>outdated</strong> browser.
-      | Please <a href="http://browsehappy.com/">upgrade your browser</a>
-      | to improve your experience.
-    <![endif]-->
+extends ./layout.jade
 
-    form
-    div(class='container')
-      div(class='row')
-        div.col-md-12
-          h1 About
-
-    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
-    script window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')
-    script(src='js/vendor/bootstrap.min.js')
-    //-script(src='js/plugins.js')
-    script(src='js/build.js')
-
-    //- Google Analytics: change UA-XXXXX-X to be your site's ID.
-    //-
-      script
-        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-        e.src='//www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-        ga('create','UA-XXXXX-X');ga('send','pageview');
+block title
+  title gitmatch - about
+block content
+  .container-fluid
+    .row
+      .col-md-12.center
+        h1 About
+        h3 Lorem ipsum doloret it samet
+    .row
+      .col-md-12
+        p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+        p Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.

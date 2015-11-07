@@ -1,0 +1,14 @@
+extends ./layout.jade
+
+block title
+ title welcome
+block content
+  div(class='container')
+    div(class='row')
+      div.col-md-12
+        h1 Choose a repository
+        ul.list-unstyled
+          each repo in repos
+            li
+              .col-md-12
+                a(href="/check/"+repo.id)= repo.name
