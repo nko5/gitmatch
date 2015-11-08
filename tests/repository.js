@@ -7,9 +7,15 @@ var issuedRepo = require('./data/repo_with_issues');
 var goodRepo = require('./data/repository');
 var repoWithMissingPackage = require('./data/repo_with_missing_package');
 var repoPackageJson = require('./data/package');
+var userRepos = require('./data/userRepos');
 
 // nock.recorder.rec();
 nock('https://api.github.com:443')
+  .get('/user/repos')
+  .query({
+    'type': 'public'
+  })
+  .reply(200, userRepos)
   .get('/repos/PatrickHeneise/Gandalf')
   .reply(200, badRepo)
   .get('/repos/PatrickHeneise/Gandalf/contents/package.json')
@@ -26,6 +32,17 @@ nock('https://api.github.com:443')
     'message': 'Not Found',
     'documentation_url': 'https://developer.github.com/v3'
   });
+
+test('getUserRepos', function(t) {
+  t.plan(1);
+
+  repository.getUserRepos()
+    .then(function(response) {
+      t.equal(response.length, 30);
+    }, function(error) {
+      t.end(error);
+    });
+});
 
 test('Repo get', function(t) {
   t.plan(1);
