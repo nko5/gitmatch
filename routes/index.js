@@ -24,18 +24,26 @@ router.get('/check/:repo', function(req, res) {
   var context = {};
   var repoName = req.params.repo;
   var user = req.user.profile.username;
+  context.user = req.user;
 
-  context.repo = repoName;
   repository.getRepo(user, repoName, req.user.accessToken)
     .then(function(repo) {
+      context.repo = repo;
       repository.checkRepo(repo, req.user.accessToken)
         .then(function(result) {
-          res.redirect('/match/' + repoName);
-        })
-        .catch(function(errors) {
-          context.errors = errors;
-          console.log(errors);
-          res.render('invalid', context);
+          context.hasIssues = false;
+          if (result.hasIssues) {
+            context.hasIssues = true;
+          }
+          context.hasContribuingMd = false;
+          if (result.hasContribuingMd) {
+            context.hasContribuingMd = true;
+          }
+          context.hasPackageJson = false;
+          if (result.hasPackageJson) {
+            context.hasPackageJson = true;
+          }
+          res.render('summary', context);
         });
     });
 });
