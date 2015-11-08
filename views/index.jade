@@ -3,7 +3,16 @@ extends ./layout.jade
 block title
   title gitmatch
 block content
-  div(class='container-fluid')
-    div(class='row')
+  .container
+    .row
       .col-md-12.center
-      a(class=['btn', 'btn-default', 'btn-lg'] href='auth' role='button') Sign in
+        h1 gitmatch
+        h3 Lorem ipsum doloret it samet
+    .row
+      .col-md-12
+        p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+        p Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+    .row
+      .col-md-12
+        p 
+          a.btn.btn-primary.btn-lg(href='auth' role='button') Sign in

@@ -10,9 +10,11 @@ html.no-js
       | to improve your experience.
     <![endif]-->
 
-    include ./includes/nav.jade
+    header
+      include ./includes/nav.jade
 
-    block content
+    .content
+      block content
 
     include ./includes/footer.jade
 

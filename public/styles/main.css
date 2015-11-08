@@ -8,11 +8,20 @@ body {
   overflow: hidden;
 }
 
-.navbar-brand > img {
-  height:20px;
-  width:20px;
-  float: left;
-  margin-right: 10px;
+@keyframes pound {
+	from { transform: none; }
+	50% { transform: scale(1.4); }
+	to { transform: none; }
+}
+
+.heart {
+  color: #c00;
+  font-size: 1.3em;
+  animation: pound 1.5s infinite;
+}
+
+.navbar-inverse {
+  border-radius: 0 !important;
 }
 
 h2 {
