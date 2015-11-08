@@ -10,7 +10,7 @@ block content
         h3 But don't worry, here are some simple steps to fix that!
     hr
     .row
-      if hasContribuingMd
+      if !hasContribuingMd
         .col-md-12.check-ko
           h4 Missing CONTRIBUTING.md
           .row
@@ -25,7 +25,7 @@ block content
             .col-md-9
               p Your repo already have contribution guidelines information.
     .row
-      if hasIssues
+      if !hasIssues
         .col-md-12.check-ko
           h4 Not enough issues
           .row
@@ -40,7 +40,7 @@ block content
             .col-md-9
               p Your repo already have at least 5 Issues on the project, so you can ask for help.
     .row
-      if hasPackageJson
+      if !hasPackageJson
         .col-md-12.check-ko
           h4 package.json does not exist
           p [Green/Red/Gray] There's no package.json :(. For now, GitMatch only works with NPM-based projects, so we can compare the libraries you use with other developers.
