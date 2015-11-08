@@ -1,7 +1,7 @@
 extends ./layout.jade
 
 block title
-  title gitmatch - insufficient information
+  title= "gitmatch : Checking "+repo.name
 block content
   .container.check-list
     .row
@@ -24,7 +24,7 @@ block content
           .col-md-9
             p [Green/Red/Gray] You don't have enough issues in your repo. We recommend at least 5 issues to developer can pick something they like to work with.
           .col-md-3
-            a.btn.btn-success.fixrepo(href="/repo/issues", role="button") Github Issues 
+            a.btn.btn-success.fixrepo(href="https://github.com/"+user.profile.username+"/"+repo.name+"/issues", role="button") Github Issues 
     .row
       .col-md-12.check-ko
         h4 package.json does not exist
