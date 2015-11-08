@@ -72,25 +72,30 @@ router.post('/fix/contributingmd', function(req, res) {
 
 /* GET repo is valid so match process starts */
 router.get('/match/:repo', function(req, res) {
+  var context = {};
   var username = req.user.profile.username;
   var reponame = req.params.repo;
-  console.log(req.user);
   // TODO
   // Search for users this is only a fake
   var matchUsers = [req.user, req.user, req.user, req.user];
+
   cat.img(function(error, url) {
     if (!error) {
       matchUsers[0].octodex = url;
-      matchUsers[1].octodex = url;
-      matchUsers[2].octodex = url;
-      matchUsers[3].octodex = url;
-      var context = {
-        user: req.user,
-        match: matchUsers
-      };
-      res.render('match', context);
     }
   });
+
+  context.user = req.user;
+  search.searchAndSaveDevs(username, 'Barcelona')
+    .then(function(users) {
+      console.log(users);
+      context.match = users;
+      res.send(users);
+      // res.render("match", context);
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 module.exports = router;
