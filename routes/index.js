@@ -5,6 +5,7 @@ var passport = require('passport');
 var request = require('request');
 var repository = require('../lib/repository');
 var router = express.Router();
+var search = require('../lib/search');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -48,7 +49,7 @@ router.get('/home', function(req, res, next) {
   var context = {
     user: req.user
   };
-  console.log('fooooo')
+  console.log('fooooo');
   request.get(
     {
       url: reposUrl,
@@ -68,11 +69,22 @@ router.get('/home', function(req, res, next) {
 router.get('/check/:repo', function(req, res, next) {
   var context = {};
   var username = req.user.profile.username;
+  var location = req.user.profile._json.location;
   var reponame = req.params.repo;
   context.user = username;
   context.repo = reponame;
   repository.getRepo(username, reponame).then(function (repo) {
-    repository.checkRepo(repo)
+
+    search.users('javascript', location)
+      .then(function(users){
+        res.redirect('/match/'+reponame);
+      })
+      .catch(function(error){
+
+      });
+
+      //FIXME: reactivate
+    /*repository.checkRepo(repo)
       .then(function (result) {
         res.redirect('/match/'+reponame);
       })
@@ -80,7 +92,7 @@ router.get('/check/:repo', function(req, res, next) {
         context.errors = errors
         console.log(errors);
         res.render('invalid', context);
-      });
+      });*/
   });
 });
 
