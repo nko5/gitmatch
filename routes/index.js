@@ -73,11 +73,17 @@ router.post('/fix/contributingmd', function(req, res) {
 router.get('/match/:repo', function(req, res) {
   var username = req.user.profile.username;
   var reponame = req.params.repo;
+  console.log(req.user);
   // TODO
   // Search for users this is only a fake
+  var match_users = [req.user, req.user, req.user, req.user];
+  match_users[0].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
+  match_users[1].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
+  match_users[2].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
+  match_users[3].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg"; 
   var context = {
     user: req.user,
-    match: [req.user, req.user, req.user, req.user, req.user, req.user]
+    match: match_users
   };
   res.render('match', context);
 });
