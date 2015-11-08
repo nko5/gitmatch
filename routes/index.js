@@ -31,9 +31,15 @@ router.get('/check/:repo', function(req, res) {
       context.repo = repo;
       repository.checkRepo(repo, req.user.accessToken)
         .then(function(result) {
-          if (result.hasIssues) {}
-          if (result.hasContribuingMd) {}
-          if (result.hasPackageJson) {}
+          if (result.hasIssues) {
+            context.hasIssues = true;
+          }
+          if (result.hasContribuingMd) {
+            context.hasContribuingMd = true;
+          }
+          if (result.hasPackageJson) {
+            context.hasPackageJson = true;
+          }
           res.render('summary', context);
         });
     });
