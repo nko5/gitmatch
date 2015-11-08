@@ -82,7 +82,10 @@ app.get('/', function(req, res) {
 });
 
 /* GET starts OAuth authorisation with Github */
-app.get('/auth', passport.authenticate('github'));
+app.get('/auth', passport.authenticate('github', {
+  scope: ['user', 'public_repo'],
+  state: 'we got you covered'
+}));
 
 /* GET authorisation error page. */
 app.get('/auth/error', function(req, res) {

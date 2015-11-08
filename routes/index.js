@@ -40,9 +40,26 @@ router.get('/check/:repo', function(req, res) {
           if (result.hasPackageJson) {
             context.hasPackageJson = true;
           }
+          req.session.currentRepo = repoName;
           res.render('summary', context);
         });
     });
+});
+
+router.post('/fix/contributingmd', function(req, res) {
+  if (req.session.currentRepo) {
+    var repo = req.session.currentRepo;
+    var user = req.user.profile.username;
+
+    repository.createContributingmd(user, repo, req.user.accessToken)
+      .then(function(resolved) {
+        res.status(200).send();
+      }, function(rejected) {
+        res.status(500).send();
+      });
+  } else {
+    res.status(500).send();
+  }
 });
 
 /* GET repo is valid so match process starts */
