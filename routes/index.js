@@ -89,16 +89,21 @@ router.get('/match/:repo', function(req, res) {
   var reponame = req.params.repo;
   req.session.currentRepo = reponame;
   context.user = req.user;
-  console.log(req.user);
-  search.searchAndSaveDevs(username, 'Barcelona', req.user.accessToken)
-    .then(function(m) {
-      context.match = n
-      res.send(users);
-      // res.render("match", context);
+  context.match = req.user
+  res.render("match", context);
+  /*
+  search.searchAndSaveDevs(username, 'Girona', req.user.accessToken)
+    .then(function(matchusers) {
+      context.match = req.user
+      console.log(matchusers);
+      res.render("match", context);
     })
     .catch((error) => {
-      next(error);
+      //next(error);
+      context.match = req.user
+      res.render("match", context);
     });
+    */
 });
 
 module.exports = router;
