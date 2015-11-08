@@ -88,6 +88,7 @@ router.get('/match/:repo', function(req, res) {
   var context = {};
   var username = req.user.profile.username;
   var reponame = req.params.repo;
+  req.session.currentRepo = reponame;
   // TODO
   // Search for users this is only a fake
   var matchUsers = [req.user, req.user, req.user, req.user];
