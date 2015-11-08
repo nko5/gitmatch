@@ -4,8 +4,11 @@ var express = require('express');
 var passport = require('passport');
 var request = require('request');
 var repository = require('../lib/repository');
-var router = express.Router();
 var search = require('../lib/search');
+var search_devs = require('../lib/search_devs');
+
+var router = express.Router();
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -49,7 +52,7 @@ router.get('/home', function(req, res, next) {
   var context = {
     user: req.user
   };
-  console.log('fooooo');
+  console.log('fooooo')
   request.get(
     {
       url: reposUrl,
@@ -69,21 +72,11 @@ router.get('/home', function(req, res, next) {
 router.get('/check/:repo', function(req, res, next) {
   var context = {};
   var username = req.user.profile.username;
-  var location = req.user.profile._json.location;
   var reponame = req.params.repo;
   context.user = username;
   context.repo = reponame;
   repository.getRepo(username, reponame).then(function (repo) {
-
-    search.users('javascript', location)
-      .then(function(users){
-        res.redirect('/match/'+reponame);
-      })
-      .catch(function(error){
-
-      });
-
-      //FIXME: reactivate
+    res.redirect('/match/'+reponame);
     /*repository.checkRepo(repo)
       .then(function (result) {
         res.redirect('/match/'+reponame);
@@ -106,5 +99,16 @@ router.get('/match/:repo', function(req, res, next) {
   };
   res.render('match', context);
 });
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
