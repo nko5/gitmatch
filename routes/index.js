@@ -4,7 +4,10 @@ var express = require('express');
 var passport = require('passport');
 var request = require('request');
 var repository = require('../lib/repository');
+var search = require('../lib/search');
+
 var router = express.Router();
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -72,14 +75,16 @@ router.get('/check/:repo', function(req, res, next) {
   var reponame = req.params.repo;
   context.user = username;
   context.repo = reponame;
-  repository.getRepo(username, reponame).then(function(repo) {
-    repository.checkRepo(repo).then(function(result) {
-      res.redirect('/match/' + reponame);
-    }, function(errors) {
-      context.errors = errors;
-      console.log(errors);
-      res.render('invalid', context);
-    });
+
+  repository.checkRepo(repo)
+      .then(function (result) {
+        res.redirect('/match/'+reponame);
+      })
+      .catch(function (errors) {
+        context.errors = errors;
+        console.log(errors);
+        res.render('invalid', context);
+      });
   });
 });
 
@@ -92,5 +97,16 @@ router.get('/match/:repo', function(req, res, next) {
   };
   res.render('match', context);
 });
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
