@@ -9,7 +9,7 @@
     "dev": "NODE_ENV=development nodemon app.js",
     "start": "NODE_ENV=production node app.js",
     "build-cli": "browserify lib/client/app.js > public/js/build.js",
-    "test": "tape tests/repository.js",
+    "test": "tape tests/*.js",
     "postinstall": "node scripts/postinstall.js"
   },
   "dependencies": {
