@@ -5,6 +5,7 @@
   "author": "Node Knockout Team <all@nodeknockout.com>",
   "main": "./app.js",
   "scripts": {
+    "debug":"node-debug app.js",
     "dev": "nodemon app.js",
     "start": "node app.js",
     "build-cli": "browserify lib/client/app.js > public/js/build.js",
@@ -32,6 +33,7 @@
     "browserify": "^12.0.1",
     "debug": "^2.2.0",
     "modernizr": "^3.2.0",
+    "node-inspector": "^0.12.3",
     "tape": "^4.2.2"
   }
 }
