@@ -9,6 +9,14 @@
 	to { transform: none; }
 }
 
+i.fa-plus-square {
+  color: #bdc3c7;
+}
+
+i.fa-plus-square:hover {
+  color: #27ae60;
+}
+
 .homeindex h1 {
   font-family: "Merriweather", "Roboto", sans-serif;
   font-weight: bold;
