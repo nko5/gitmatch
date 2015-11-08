@@ -24,17 +24,17 @@ router.get('/check/:repo', function(req, res) {
   var context = {};
   var repoName = req.params.repo;
   var user = req.user.profile.username;
+  context.user = req.user;
 
-  context.repo = repoName;
   repository.getRepo(user, repoName, req.user.accessToken)
     .then(function(repo) {
+      context.repo = repo;
       repository.checkRepo(repo, req.user.accessToken)
         .then(function(result) {
-          res.redirect('/match/' + repoName);
+          res.redirect('/match/' + repoName, context);
         })
         .catch(function(errors) {
           context.errors = errors;
-          console.log(errors);
           res.render('invalid', context);
         });
     });
