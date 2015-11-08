@@ -30,12 +30,10 @@ router.get('/check/:repo', function(req, res) {
     .then(function(repo) {
       repository.checkRepo(repo, req.user.accessToken)
         .then(function(result) {
-          res.redirect('/match/' + repoName);
-        })
-        .catch(function(errors) {
-          context.errors = errors;
-          console.log(errors);
-          res.render('invalid', context);
+          if (result.hasIssues) {}
+          if (result.hasContribuingMd) {}
+          if (result.hasPackageJson) {}
+          res.render('summary', context);
         });
     });
 });
