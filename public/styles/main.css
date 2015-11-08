@@ -71,6 +71,11 @@ h2 img {
   margin-bottom: 20px;
 }
 
+.check-list .check-ko h4 {
+  font-weight: bold;
+  color: #c0392b;
+}
+
 footer {
   margin-top: 30px;
   font-size: 0.9em;
