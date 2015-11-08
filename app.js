@@ -12,12 +12,7 @@ var session = require('express-session');
 var passport = require('passport');
 var GithubStrategy = require('passport-github').Strategy;
 var bodyParser = require('body-parser');
-var redis = require('redis');
 var RedisStore = require('connect-redis')(session);
-var client = redis.createClient(
-  config.redis.url, {}
-);
-
 var routes = require('./routes/index');
 
 var app = express();
@@ -26,7 +21,7 @@ function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/login');
+  res.redirect('/');
 }
 
 // view engine setup
@@ -78,7 +73,44 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-app.use('/', routes);
+app.get('/', function(req, res) {
+  if (req.user) {
+    res.redirect('/home');
+  } else {
+    res.render('index');
+  }
+});
+
+/* GET starts OAuth authorisation with Github */
+app.get('/auth', passport.authenticate('github'));
+
+/* GET authorisation error page. */
+app.get('/auth/error', function(req, res) {
+  res.render('loginko');
+});
+
+/* GET OAuth authorisation callback */
+app.get('/auth/callback',
+  passport.authenticate('github', {
+    failureRedirect: '/auth/error'
+  }),
+  function(req, res) {
+    res.redirect('/home');
+  }
+);
+
+/* GET Logout */
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+/* GET about page. */
+app.get('/about', function(req, res) {
+  res.render('about');
+});
+
+app.use('/', ensureAuthenticated, routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
