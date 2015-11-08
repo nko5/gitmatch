@@ -3,6 +3,7 @@
 var express = require('express');
 var repository = require('../lib/repository');
 var search = require('../lib/search');
+var octodex = require('../lib/octodex');
 
 var router = express.Router();
 
@@ -73,14 +74,10 @@ router.post('/fix/contributingmd', function(req, res) {
 router.get('/match/:repo', function(req, res) {
   var username = req.user.profile.username;
   var reponame = req.params.repo;
-  console.log(req.user);
   // TODO
   // Search for users this is only a fake
   var match_users = [req.user, req.user, req.user, req.user];
-  match_users[0].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
-  match_users[1].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
-  match_users[2].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
-  match_users[3].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg"; 
+  match_users = match_users.map(function(e) { return e.octodex = octodex(); });
   var context = {
     user: req.user,
     match: match_users
