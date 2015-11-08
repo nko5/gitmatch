@@ -20,25 +20,39 @@ block content
               a.btn.btn-success.fixrepo(href="/fix/contributingmd", onclick="return false;" role="button") Fix CONTRIBUTING.md
       else
         .col-md-12.check-ok
-          h4 CONTRIBUTING.md
+          h4 CONTRIBUTING.md is present
           .row
             .col-md-9
               p Your repo already have contribution guidelines information.
     .row
-      .col-md-12.check-ko
-        h4 Not enough issues
-        .row
-          .col-md-9
-            p [Green/Red/Gray] You don't have enough issues in your repo. We recommend at least 5 issues to developer can pick something they like to work with.
-          .col-md-3
-            a.btn.btn-success.fixrepo(href="https://github.com/"+user.profile.username+"/"+repo.name+"/issues", role="button") Github Issues
+      if hasIssues
+        .col-md-12.check-ko
+          h4 Not enough issues
+          .row
+            .col-md-9
+              p You don't have enough issues in your repo. We recommend at least 5 issues to developer can pick something they like to work with.
+            .col-md-3
+              a.btn.btn-success.fixrepo(href="https://github.com/"+user.profile.username+"/"+repo.name+"/issues", role="button") Github Issues
+      else
+        .col-md-12.check-ok
+          h4 At least 5 Issues on the project
+          .row
+            .col-md-9
+              p Your repo already have at least 5 Issues on the project, so you can ask for help.
     .row
-      .col-md-12.check-ko
-        h4 package.json does not exist
-        p [Green/Red/Gray] There's no package.json :(. For now, GitMatch only works with NPM-based projects, so we can compare the libraries you use with other developers.
-        p
-          a(href="http://npmjs.org") Here's
-          span more info on package.json/NPM.
+      if hasPackageJson
+        .col-md-12.check-ko
+          h4 package.json does not exist
+          p [Green/Red/Gray] There's no package.json :(. For now, GitMatch only works with NPM-based projects, so we can compare the libraries you use with other developers.
+          p
+            a(href="http://npmjs.org") Here's
+            span more info on package.json/NPM.
+      else
+        .col-md-12.check-ok
+          h4 package.json is present
+          .row
+            .col-md-9
+              p package.json project definition file is already present.
     hr
     .row
       .col-md-12.text-center
