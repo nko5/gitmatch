@@ -31,11 +31,10 @@ router.get('/check/:repo', function(req, res) {
       context.repo = repo;
       repository.checkRepo(repo, req.user.accessToken)
         .then(function(result) {
-          res.redirect('/match/' + repoName, context);
-        })
-        .catch(function(errors) {
-          context.errors = errors;
-          res.render('invalid', context);
+          if (result.hasIssues) {}
+          if (result.hasContribuingMd) {}
+          if (result.hasPackageJson) {}
+          res.render('summary', context);
         });
     });
 });
