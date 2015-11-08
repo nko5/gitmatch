@@ -2,6 +2,7 @@
 
 var express = require('express');
 var repository = require('../lib/repository');
+var cat = require('octodex');
 var search = require('../lib/search');
 
 var router = express.Router();
