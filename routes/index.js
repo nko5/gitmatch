@@ -90,9 +90,9 @@ router.get('/match/:repo', function(req, res) {
   req.session.currentRepo = reponame;
   context.user = req.user;
 
-  context.match = req.user
-  res.render("match", context);
-  /*
+  //context.match = req.user
+  //res.render("match", context);
+
   search.searchAndSaveDevs(username, 'Girona', req.user.accessToken)
     .then(function(matchusers) {
       context.match = req.user
@@ -104,7 +104,6 @@ router.get('/match/:repo', function(req, res) {
       context.match = req.user
       res.render("match", context);
     });
-    */
 });
 
 module.exports = router;
