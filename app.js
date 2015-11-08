@@ -73,6 +73,11 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+app.use(function(req, res, next) {
+  console.log(req.user.accessToken);
+  next();
+});
+
 app.get('/', function(req, res) {
   if (req.user) {
     res.redirect('/home');

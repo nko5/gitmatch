@@ -32,7 +32,13 @@ nock('https://api.github.com:443')
   .reply(404, {
     'message': 'Not Found',
     'documentation_url': 'https://developer.github.com/v3'
-  });
+  })
+  .post('/repos/PatrickHeneise/gitup-testing/issues', {
+    'title': 'Contributor wanted!',
+    'body': 'Dear @Moezalez,\n\n@PatrickHeneise matched you on [GitMatch](http://barcelonajs.2015.nodeknockout.com)!\n\nWith GitMatch we analysed your code style and NPM module usage and you have a great match score with this repository.\n\nThis repository is open source and meets all the requirements to be [contribution-friendly](https://github.com/PatrickHeneise/gitup-testing/blob/master/CONTRIBUTING.md).\n\nPlease have a look at the open [issues](https://github.com/PatrickHeneise/gitup-testing/issues) to see if there\'s something you could help with, @PatrickHeneise would greatly appreciate your contribution.\n\nRegards,\nGitMatch',
+    'labels': ['help wanted', 'gitmatch']
+  })
+  .reply(201);
 
 test('getUserRepos', function(t) {
   t.plan(1);
@@ -132,5 +138,16 @@ test('Repo Check #3: Missing package.json', function(t) {
   repository.checkRepo(repoWithMissingPackage)
     .then(function(resolved) {
       t.equal(resolved.hasPackageJson, false);
+    });
+});
+
+test('matchMade', function(t) {
+  t.plan(1);
+
+  repository.matchMade('PatrickHeneise', 'gitup-testing', 'Moezalez')
+    .then(function(resolved) {
+      t.equal(resolved, 'ok');
+    }, function(rejected) {
+      t.end(rejected);
     });
 });

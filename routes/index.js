@@ -3,6 +3,7 @@
 var express = require('express');
 var repository = require('../lib/repository');
 var search = require('../lib/search');
+var cat = require('octodex');
 
 var router = express.Router();
 
@@ -45,7 +46,7 @@ router.get('/check/:name/:repo', function(req, res) {
           }
           req.session.currentRepo = repoName;
           if (result.hasPackageJson && result.hasIssues && result.hasContribuingMd) {
-            res.redirect('/match/'+repoName);
+            res.redirect('/match/' + repoName);
           } else {
             res.render('summary', context);
           }
@@ -76,16 +77,20 @@ router.get('/match/:repo', function(req, res) {
   console.log(req.user);
   // TODO
   // Search for users this is only a fake
-  var match_users = [req.user, req.user, req.user, req.user];
-  match_users[0].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
-  match_users[1].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
-  match_users[2].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
-  match_users[3].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg"; 
-  var context = {
-    user: req.user,
-    match: match_users
-  };
-  res.render('match', context);
+  var matchUsers = [req.user, req.user, req.user, req.user];
+  cat.img(function(error, url) {
+    if (!error) {
+      matchUsers[0].octodex = url;
+      matchUsers[1].octodex = url;
+      matchUsers[2].octodex = url;
+      matchUsers[3].octodex = url;
+      var context = {
+        user: req.user,
+        match: matchUsers
+      };
+      res.render('match', context);
+    }
+  });
 });
 
 module.exports = router;
