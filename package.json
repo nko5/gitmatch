@@ -5,8 +5,8 @@
   "author": "Node Knockout Team <all@nodeknockout.com>",
   "main": "./app.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "node app.js",
+    "dev": "NODE_ENV=development nodemon app.js",
+    "start": "NODE_ENV=production node app.js",
     "build-cli": "browserify lib/client/app.js > public/js/build.js",
     "test": "tape tests/*.js",
     "postinstall": "node scripts/postinstall.js"
