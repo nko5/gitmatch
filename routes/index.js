@@ -20,7 +20,6 @@ router.get('/auth', passport.authenticate('github'));
 
 /* GET authorisation error page. */
 router.get('/auth/error', function(req, res) {
-  // TODO Create lin KO template
   res.render('loginko');
 });
 
@@ -28,7 +27,6 @@ router.get('/auth/error', function(req, res) {
 router.get('/auth/callback',
   passport.authenticate('github', {failureRedirect: '/auth/error'}),
   function(req, res) {
-    // TODO Redirect to /home
     res.redirect('/home');
   }
 );
@@ -47,16 +45,10 @@ router.get('/logout', function(req, res, next) {
 /* GET fech all repos for the logged user */
 router.get('/home', function(req, res, next) {
   var reposUrl = req.user.profile._json.repos_url;
-  // var avatar = req.user._raw.avatar_url;
-  var avatar = req.user.profile._json.avatar_url
-    , username = req.user.profile.username
-
   var context = {
-    user: req.user,
-    avatar: avatar,
-    username: username
+    user: req.user
   };
-  console.log(context);
+  console.log('fooooo')
   request.get(
     {
       url: reposUrl,

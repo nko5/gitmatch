@@ -3,12 +3,39 @@ extends ./layout.jade
 block title
  title welcome
 block content
-  div(class='container')
-    div(class='row')
-      div.col-md-12
+  .container
+    .row
+      .col-md-12
         h1 Choose a repository
-        ul.list-unstyled
-          each repo in repos
-            li
-              .col-md-12
+        hr
+        each repo in repos
+          .row.repo
+            .col-md-1
+              a(href="/check/"+repo.name)
+                img(src="http://rit-csc.github.io/git_instructions/Media/git.png" width="70")
+            .col-md-8
+              h5 
                 a(href="/check/"+repo.name)= repo.name
+              .url
+                a(href="https://github.com/"+repo.full_name)= repo.full_name
+              .description
+                p= repo.description
+              .info
+                if repo.homepage
+                  span Homepage
+                  span= " "+repo.homepage
+            .col-md-3
+              ul.list-unstyled
+                li
+                  span Watchers:
+                  span= " "+repo.watchers_count
+                li
+                  span Forks:
+                  span= " "+repo.forks_count
+                li
+                  span Stars:
+                  span= " "+repo.stargazers_count
+                li
+                  span Open Issues:
+                  span= " "+repo.open_issues_count
+          hr
