@@ -100,10 +100,10 @@ router.get('/match/:repo', function(req, res) {
   });
 
   context.user = req.user;
-  search.searchAndSaveDevs(username, 'Barcelona')
+  search.searchAndSaveDevs(username, 'Barcelona', req.user.accessToken)
     .then(function(m) {
       console.log(m);
-      context.match = n
+      context.match = n;
       res.send(users);
       // res.render("match", context);
     })
