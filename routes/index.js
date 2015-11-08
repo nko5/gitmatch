@@ -2,7 +2,6 @@
 
 var express = require('express');
 var repository = require('../lib/repository');
-var cat = require('octodex');
 var search = require('../lib/search');
 
 var router = express.Router();
@@ -89,20 +88,9 @@ router.get('/match/:repo', function(req, res) {
   var username = req.user.profile.username;
   var reponame = req.params.repo;
   req.session.currentRepo = reponame;
-  // TODO
-  // Search for users this is only a fake
-  var matchUsers = [req.user, req.user, req.user, req.user];
-
-  cat.img(function(error, url) {
-    if (!error) {
-      matchUsers[0].octodex = url;
-    }
-  });
-
   context.user = req.user;
   search.searchAndSaveDevs(username, 'Barcelona', req.user.accessToken)
     .then(function(m) {
-      console.log(m);
       context.match = n;
       res.send(users);
       // res.render("match", context);
