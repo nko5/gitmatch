@@ -47,6 +47,17 @@ test('Repo get package.json', function(t) {
     });
 });
 
+test('Repo Check #1: Missing CONTRIBUTING.md', function(t) {
+  t.plan(1);
+
+  repository.checkRepo(badRepo)
+    .then(function(response) {
+    }, function(error) {
+      console.log(error);
+      t.end(error);
+    });
+});
+
 test('Repo CONTRIBUTING.md does not exist', function(t) {
   t.plan(1);
 
