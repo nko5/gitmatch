@@ -7,6 +7,7 @@ block content
     .row
       .col-md-12
         h1 Choose a repository
+        h3 Lorem ipsum doloret it samet
         hr
         each repo in repos
           .row.repo
@@ -24,18 +25,18 @@ block content
                 if repo.homepage
                   span Homepage
                   span= " "+repo.homepage
-            .col-md-3
+            .col-md-3.stats
               ul.list-unstyled
                 li
-                  span Watchers:
-                  span= " "+repo.watchers_count
+                  i.fa.fa-eye
+                  span= " Watchers: "+repo.watchers_count
                 li
-                  span Forks:
-                  span= " "+repo.forks_count
+                  i.fa.fa-code-fork
+                  span= " Forks: "+repo.forks_count
                 li
-                  span Stars:
-                  span= " "+repo.stargazers_count
+                  i.fa.fa-star
+                  span= " Stars: "+repo.stargazers_count
                 li
-                  span Open Issues:
-                  span= " "+repo.open_issues_count
+                  i.fa.fa-ticket
+                  span= " Open Issues: "+repo.open_issues_count
           hr
