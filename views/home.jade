@@ -7,16 +7,15 @@ block content
     .row
       .col-md-12
         h1 Choose a repository
-        h3 Lorem ipsum doloret it samet
         hr
         each repo in repos
           .row.repo
             .col-md-1
               a(href="/check/"+repo.name)
                 img(src="http://rit-csc.github.io/git_instructions/Media/git.png" width="70")
-            .col-md-8
-              h5 
-                a(href="/check/"+repo.name)= repo.name
+            .col-md-7
+              h5
+                a(href="/check/"+repo.full_name)= repo.name
               .url
                 a(href="https://github.com/"+repo.full_name)= repo.full_name
               .description
@@ -39,4 +38,7 @@ block content
                 li
                   i.fa.fa-ticket
                   span= " Open Issues: "+repo.open_issues_count
+            .col-md-1.text-left
+              a(href="/check/"+repo.name)
+                i.fa.fa-plus-square.fa-5x
           hr

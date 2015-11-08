@@ -13,7 +13,8 @@ var userRepos = require('./data/userRepos');
 nock('https://api.github.com:443')
   .get('/user/repos')
   .query({
-    'type': 'public'
+    'type': 'public',
+    'per_page': 100
   })
   .reply(200, userRepos)
   .get('/repos/PatrickHeneise/Gandalf')
@@ -111,8 +112,8 @@ test('Repo Check #1: Missing Issues', function(t) {
   t.plan(1);
 
   repository.checkRepo(badRepo)
-    .then(function() {}, function(error) {
-      t.equal(error, 'not enough issues');
+    .then(function(resolved) {
+      t.equal(resolved.hasIssues, false);
     });
 });
 
@@ -120,8 +121,8 @@ test('Repo Check #2: Missing CONTRIBUTING.md', function(t) {
   t.plan(1);
 
   repository.checkRepo(issuedRepo)
-    .then(function() {}, function(error) {
-      t.equal(error, 'CONTRIBUTING.md not found');
+    .then(function(resolved) {
+      t.equal(resolved.hasContribuingMd, false);
     });
 });
 
@@ -129,7 +130,7 @@ test('Repo Check #3: Missing package.json', function(t) {
   t.plan(1);
 
   repository.checkRepo(repoWithMissingPackage)
-    .then(function() {}, function(error) {
-      t.equal(error, 'CONTRIBUTING.md not found');
+    .then(function(resolved) {
+      t.equal(resolved.hasPackageJson, false);
     });
 });

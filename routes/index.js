@@ -20,10 +20,10 @@ router.get('/home', function(req, res) {
 });
 
 /* GET checks the information for a repo */
-router.get('/check/:repo', function(req, res) {
+router.get('/check/:name/:repo', function(req, res) {
   var context = {};
   var repoName = req.params.repo;
-  var user = req.user.profile.username;
+  var user = req.params.name;
   context.user = req.user;
 
   repository.getRepo(user, repoName, req.user.accessToken)
@@ -43,20 +43,49 @@ router.get('/check/:repo', function(req, res) {
           if (result.hasPackageJson) {
             context.hasPackageJson = true;
           }
-          res.render('summary', context);
+          req.session.currentRepo = repoName;
+          if (result.hasPackageJson && result.hasIssues && result.hasContribuingMd) {
+            res.redirect('/match/'+repoName);
+          } else {
+            res.render('summary', context);
+          }
         });
     });
 });
 
+router.post('/fix/contributingmd', function(req, res) {
+  if (req.session.currentRepo) {
+    var repo = req.session.currentRepo;
+    var user = req.user.profile.username;
+
+    repository.createContributingmd(user, repo, req.user.accessToken)
+      .then(function(resolved) {
+        res.status(200).send();
+      }, function(rejected) {
+        res.status(500).send();
+      });
+  } else {
+    res.status(500).send();
+  }
+});
+
 /* GET repo is valid so match process starts */
 router.get('/match/:repo', function(req, res) {
+  var username = req.user.profile.username;
+  var reponame = req.params.repo;
+  console.log(req.user);
   // TODO
-  // var username = req.user.profile.username;
-  // var reponame = req.params.repo;
-  // var context = {
-  //   user: req.user
-  // };
-  // res.render('match', context);
+  // Search for users this is only a fake
+  var match_users = [req.user, req.user, req.user, req.user];
+  match_users[0].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
+  match_users[1].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
+  match_users[2].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg";
+  match_users[3].octodex = "https://octodex.github.com/images/gracehoppertocat.jpg"; 
+  var context = {
+    user: req.user,
+    match: match_users
+  };
+  res.render('match', context);
 });
 
 module.exports = router;

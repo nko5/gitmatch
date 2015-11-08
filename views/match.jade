@@ -10,35 +10,23 @@ block content
         h3 Lorem ipsum doloret it samet
         hr
     .row.match-list.text-center
-      .col-md-3
-        .thumbnail
-          img(src="https://octodex.github.com/images/filmtocat.png")
-          .caption
-            h3 name
-            p.description Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-            p
-              a.btn.btn-primary(role="button") Ask for Help
-      .col-md-3
-        .thumbnail
-          img(src="https://octodex.github.com/images/filmtocat.png")
-          .caption
-            h3 name
-            p.description Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-            p
-              a.btn.btn-primary(role="button") Ask for Help
-      .col-md-3
-        .thumbnail
-          img(src="https://octodex.github.com/images/filmtocat.png")
-          .caption
-            h3 name
-            p.description Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-            p
-              a.btn.btn-primary(role="button") Ask for Help
-      .col-md-3
-        .thumbnail
-          img(src="https://octodex.github.com/images/filmtocat.png")
-          .caption
-            h3 name
-            p.description Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-            p
-              a.btn.btn-primary(role="button") Ask for Help
+      each muser in match
+        .col-md-3
+          .thumbnail
+            img(src=muser.octodex)
+            .caption
+              h3 Match me!
+              p.description
+                ul.list-unstyled
+                  li Public Repos: 
+                    span= " "+muser.profile._json.public_repos
+                  li Public Gists:
+                    span= " "+muser.profile._json.public_gists
+                  li Followers:
+                    span= " "+muser.profile._json.followers
+                  li Following:
+                    span= " "+muser.profile._json.following
+                  li Collaborators:
+                    span= " "+muser.profile._json.collaborators
+              p
+                a.btn.btn-primary(role="button") Ask for Help
