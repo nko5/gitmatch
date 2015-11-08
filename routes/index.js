@@ -3,7 +3,6 @@
 var express = require('express');
 var repository = require('../lib/repository');
 var search = require('../lib/search');
-var cat = require('octodex');
 
 var router = express.Router();
 
@@ -101,9 +100,9 @@ router.get('/match/:repo', function(req, res) {
 
   context.user = req.user;
   search.searchAndSaveDevs(username, 'Barcelona')
-    .then(function(users) {
-      console.log(users);
-      context.match = users;
+    .then(function(m) {
+      console.log(m);
+      context.match = n
       res.send(users);
       // res.render("match", context);
     })
