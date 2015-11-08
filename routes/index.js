@@ -5,7 +5,6 @@ var passport = require('passport');
 var request = require('request');
 var repository = require('../lib/repository');
 var search = require('../lib/search');
-var search_devs = require('../lib/search_devs');
 
 var router = express.Router();
 
