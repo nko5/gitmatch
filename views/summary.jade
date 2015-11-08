@@ -10,13 +10,20 @@ block content
         h3 But don't worry, here are some simple steps to fix that!
     hr
     .row
-      .col-md-12.check-ko
-        h4 Missing CONTRIBUTING.md
-        .row
-          .col-md-9
-            p [Green/Red] Your repo is missing contribution guidelines in form of a CONTRIBUTING.md file. We can create one for you with one click, directly in your repo.
-          .col-md-3
-            a.btn.btn-success.fixrepo(href="/fix/contributingmd", onclick="return false;" role="button") Fix CONTRIBUTING.md
+      if hasContribuingMd
+        .col-md-12.check-ko
+          h4 Missing CONTRIBUTING.md
+          .row
+            .col-md-9
+              p Your repo is missing contribution guidelines in form of a CONTRIBUTING.md file. We can create one for you with one click, directly in your repo.
+            .col-md-3
+              a.btn.btn-success.fixrepo(href="/fix/contributingmd", onclick="return false;" role="button") Fix CONTRIBUTING.md
+      else
+        .col-md-12.check-ok
+          h4 CONTRIBUTING.md
+          .row
+            .col-md-9
+              p Your repo already have contribution guidelines information.
     .row
       .col-md-12.check-ko
         h4 Not enough issues

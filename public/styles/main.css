@@ -76,6 +76,18 @@ h2 img {
   color: #c0392b;
 }
 
+.check-list .check-ok {
+  border: 1px solid #ecf0f1;
+  border-left: 5px solid #27ae60;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.check-list .check-ok h4 {
+  font-weight: bold;
+  color: #27ae60;
+}
+
 footer {
   margin-top: 30px;
   font-size: 0.9em;

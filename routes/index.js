@@ -31,12 +31,15 @@ router.get('/check/:repo', function(req, res) {
       context.repo = repo;
       repository.checkRepo(repo, req.user.accessToken)
         .then(function(result) {
+          context.hasIssues = false;
           if (result.hasIssues) {
             context.hasIssues = true;
           }
+          context.hasContribuingMd = false;
           if (result.hasContribuingMd) {
             context.hasContribuingMd = true;
           }
+          context.hasPackageJson = false;
           if (result.hasPackageJson) {
             context.hasPackageJson = true;
           }
