@@ -73,8 +73,11 @@ router.post('/fix/contributingmd', function(req, res) {
 router.get('/match/:repo', function(req, res) {
   var username = req.user.profile.username;
   var reponame = req.params.repo;
+  // TODO
+  // Search for users this is only a fake
   var context = {
-    user: req.user
+    user: req.user,
+    match: [req.user, req.user, req.user, req.user, req.user, req.user]
   };
   res.render('match', context);
 });
