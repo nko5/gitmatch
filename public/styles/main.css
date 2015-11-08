@@ -27,6 +27,15 @@
   font-size: 1.5em;
 }
 
+.repo .stats {
+    border-left: 1px solid #ecf0f1;
+    padding-left: 40px;
+}
+
+.repo .stats i {
+  width: 15px;
+}
+
 .repo .url {
   font-size: 0.9em;
   padding: 10px 0 5px 0;
@@ -49,6 +58,10 @@ h2 img {
   left: 0;
   right: 0;
   margin: auto;
+}
+
+.match-list .description {
+  font-size: 0.9em;
 }
 
 footer {
