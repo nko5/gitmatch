@@ -32,7 +32,7 @@ block content
             .col-md-9
               p You don't have enough issues in your repo. We recommend at least 5 issues to developer can pick something they like to work with.
             .col-md-3
-              a.btn.btn-success.fixrepo(href="https://github.com/"+user.profile.username+"/"+repo.name+"/issues", role="button") Github Issues
+              a.btn.btn-success(href="https://github.com/"+user.profile.username+"/"+repo.name+"/issues", target="_blank" role="button") Github Issues
       else
         .col-md-12.check-ok
           h4 At least 5 Issues on the project
@@ -55,5 +55,9 @@ block content
               p package.json project definition file is already present.
     hr
     .row
-      .col-md-12.text-center
-          a.btn.btn-primary.btn-lg.fixrepo(href="", role="button") Check my repo again
+      if hasPackageJson && hasIssues && hasPackageJson
+        .col-md-12.text-center
+            a.btn.btn-primary.btn-lg.fixrepo(href="", role="button") Check my repo again
+      else
+        .col-md-12.text-center
+            lol u suck

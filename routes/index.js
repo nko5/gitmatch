@@ -20,10 +20,10 @@ router.get('/home', function(req, res) {
 });
 
 /* GET checks the information for a repo */
-router.get('/check/:repo', function(req, res) {
+router.get('/check/:name/:repo', function(req, res) {
   var context = {};
   var repoName = req.params.repo;
-  var user = req.user.profile.username;
+  var user = req.params.name;
   context.user = req.user;
 
   repository.getRepo(user, repoName, req.user.accessToken)

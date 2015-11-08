@@ -15,8 +15,8 @@ block content
               a(href="/check/"+repo.name)
                 img(src="http://rit-csc.github.io/git_instructions/Media/git.png" width="70")
             .col-md-8
-              h5 
-                a(href="/check/"+repo.name)= repo.name
+              h5
+                a(href="/check/"+repo.full_name)= repo.name
               .url
                 a(href="https://github.com/"+repo.full_name)= repo.full_name
               .description
