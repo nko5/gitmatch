@@ -72,13 +72,15 @@ router.get('/check/:repo', function(req, res, next) {
   context.user = username;
   context.repo = reponame;
   repository.getRepo(username, reponame).then(function (repo) {
-    repository.checkRepo(repo).then(function (result) {
-      res.redirect('/match/'+reponame);
-    }, function (errors) {
-      context.errors = errors
-      console.log(errors);
-      res.render('invalid', context);
-    });
+    repository.checkRepo(repo)
+      .then(function (result) {
+        res.redirect('/match/'+reponame);
+      })
+      .catch(function (errors) {
+        context.errors = errors
+        console.log(errors);
+        res.render('invalid', context);
+      });
   });
 });
 
