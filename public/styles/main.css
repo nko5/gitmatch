@@ -9,6 +9,16 @@
 	to { transform: none; }
 }
 
+.homeindex h1 {
+  font-family: "Merriweather", "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 6em;
+}
+
+.homeindex .desc {
+  padding: 20px 0;
+}
+
 .heart {
   color: #c00;
   font-size: 1.3em;
