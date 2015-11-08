@@ -6,28 +6,28 @@ block content
   .container
     .row
       .col-md-12.text-center
-        h1 We are matching your project with contributors!
-        h3 Lorem ipsum doloret it samet
+        h1 We found a possible match
+        h3 Are you interested to ask for help to this user?
         hr
     .row.match-list.text-center
-      each muser in match
-        .col-md-3
+        .col-md-6
           .thumbnail
-            img(src=muser.octodex)
+            img(src=match.octodex, width="200")
             .caption
               h3 Match me!
               p.description
                 ul.list-unstyled
                   li Public Repos: 
-                    span= " "+muser.profile._json.public_repos
+                    span= " "+match.profile._json.public_repos
                   li Public Gists:
-                    span= " "+muser.profile._json.public_gists
+                    span= " "+match.profile._json.public_gists
                   li Followers:
-                    span= " "+muser.profile._json.followers
+                    span= " "+match.profile._json.followers
                   li Following:
-                    span= " "+muser.profile._json.following
+                    span= " "+match.profile._json.following
                   li Collaborators:
-                    span= " "+muser.profile._json.collaborators
-              p
-                a.btn.btn-primary(role="button") Ask for Help
+                    span= " "+match.profile._json.collaborators
+        .col-md-6
+          p
+            a.btn.btn-primary(role="button") Ask for Help
     hr
