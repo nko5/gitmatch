@@ -44,7 +44,11 @@ router.get('/check/:name/:repo', function(req, res) {
             context.hasPackageJson = true;
           }
           req.session.currentRepo = repoName;
-          res.render('summary', context);
+          if (result.hasPackageJson && result.hasIssues && result.hasContribuingMd) {
+            res.redirect('/match/'+repoName);
+          } else {
+            res.render('summary', context);
+          }
         });
     });
 });
@@ -67,13 +71,15 @@ router.post('/fix/contributingmd', function(req, res) {
 
 /* GET repo is valid so match process starts */
 router.get('/match/:repo', function(req, res) {
+  var username = req.user.profile.username;
+  var reponame = req.params.repo;
   // TODO
-  // var username = req.user.profile.username;
-  // var reponame = req.params.repo;
-  // var context = {
-  //   user: req.user
-  // };
-  // res.render('match', context);
+  // Search for users this is only a fake
+  var context = {
+    user: req.user,
+    match: [req.user, req.user, req.user, req.user, req.user, req.user]
+  };
+  res.render('match', context);
 });
 
 module.exports = router;
