@@ -3,7 +3,7 @@ var search = require('../lib/search');
 
 test('Searching users on GitHub', function (t) {
   t.plan(1);
-  search.users('javascript', 'Spain')
+  search.users('Barcelona')
   .then((users) => {
     t.equal(users.length, 30);
   })
