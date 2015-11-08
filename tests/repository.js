@@ -27,7 +27,7 @@ test('Repo has not enough issues', function(t) {
 test('Repo has sufficient issues', function(t) {
   t.plan(1);
 
-  repository.hasIssues(badRepo)
+  repository.hasIssues(goodRepo)
     .then(function(response) {
       t.equal(response, 'issues ok');
     }, function(error) {
