@@ -54,6 +54,19 @@ router.get('/check/:name/:repo', function(req, res) {
     });
 });
 
+router.post('/match/make', function(req, res) {
+  if (req.session.currentRepo) {
+    var repo = req.session.currentRepo;
+    var user = req.user.profile.username;
+    var developer = req.body.developer;
+
+    repository.matchMade(user, repo, developer, req.user.accessToken)
+      .then(function(resolved) {
+        res.status(200).send();
+      });
+  }
+});
+
 router.post('/fix/contributingmd', function(req, res) {
   if (req.session.currentRepo) {
     var repo = req.session.currentRepo;
