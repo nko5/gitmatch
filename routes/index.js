@@ -29,7 +29,9 @@ router.get('/auth/error', function(req, res) {
 
 /* GET OAuth authorisation callback */
 router.get('/auth/callback',
-  passport.authenticate('github', {failureRedirect: '/auth/error'}),
+  passport.authenticate('github', {
+    failureRedirect: '/auth/error'
+  }),
   function(req, res) {
     res.redirect('/home');
   }
@@ -52,15 +54,14 @@ router.get('/home', function(req, res, next) {
   var context = {
     user: req.user
   };
-  console.log('fooooo')
-  request.get(
-    {
-      url: reposUrl,
-      headers: {
-        'User-Agent': 'request'
-      },
-      json: true
-    }, function(error, response, body) {
+
+  request.get({
+    url: reposUrl,
+    headers: {
+      'User-Agent': 'request'
+    },
+    json: true
+  }, function(error, response, body) {
     if (!error && response.statusCode === 200) {
       context.repos = body;
       res.render('home', context);
@@ -75,20 +76,18 @@ router.get('/check/:repo', function(req, res, next) {
   var reponame = req.params.repo;
   context.user = username;
   context.repo = reponame;
-  repository.getRepo(username, reponame).then(function (repo) {
-    res.redirect('/match/'+reponame);
-    /*repository.checkRepo(repo)
+
+  repository.checkRepo(repo)
       .then(function (result) {
         res.redirect('/match/'+reponame);
       })
       .catch(function (errors) {
-        context.errors = errors
+        context.errors = errors;
         console.log(errors);
         res.render('invalid', context);
-      });*/
+      });
   });
 });
-
 
 /* GET repo is valid so match process starts */
 router.get('/match/:repo', function(req, res, next) {

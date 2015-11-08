@@ -78,13 +78,6 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-app.use(function(req, res, next) {
-  if (req && req.user) {
-    console.log('GitHub accessToken: ' + req.user.accessToken);
-  }
-  next();
-});
-
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -120,7 +113,7 @@ app.use(function(err, req, res) {
 });
 
 var server = http.createServer(app);
-server.listen(3000);
+server.listen(config.port);
 server.on('error', function(error) {
   console.log(error);
 });
