@@ -89,6 +89,7 @@ router.get('/match/:repo', function(req, res) {
   var reponame = req.params.repo;
   req.session.currentRepo = reponame;
   context.user = req.user;
+
   context.match = req.user
   res.render("match", context);
   /*
