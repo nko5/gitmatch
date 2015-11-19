@@ -8,6 +8,7 @@ var router = express.Router();
 
 /* GET fech all repos for the logged user */
 router.get('/home', function(req, res) {
+  console.log('ebtra');
   repository.getUserRepos(req.user.accessToken)
     .then(function(resolved) {
       var context = {};

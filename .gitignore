@@ -1,3 +1,9 @@
+#developer credentials
+credentials.js
+
+#node
 node_modules
 npm-debug.log
+
+#system
 .DS_Store
