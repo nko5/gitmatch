@@ -10,3 +10,15 @@ Before the matching process can begin, we check the repository if it's contribut
 In the matching process, we wanted to get all gender/race/identification characteristics out, only the match scores and geo distance matter.
 
 Once matched, we create an issue in the maintainers repo that friendly asks the developer for contribution.
+
+
+# NPM scripts
+
+`npm run dev`
+> Run in development mode
+
+`npm run start`
+> Run in production mode
+
+`npm run test`
+> Runs tests
